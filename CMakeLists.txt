@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 # TODO: Can this be replaced with a toolchain file?
+set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_LINK_DEPENDS_NO_SHARED TRUE)
 
 set(CMAKE_C_COMPILER clang)
@@ -23,7 +24,7 @@ set(CMAKE_C_CREATE_SHARED_LIBRARY
 # (since it does)
 set(CMAKE_C_COMPILER_WORKS TRUE)
 
-project(zlib VERSION 1.2.3 LANGUAGES C)
+project(sqlite3 VERSION 3.6.10 LANGUAGES C)
 
 add_definitions(-D_DARWIN_NO_64_BIT_INODE)
 
@@ -73,7 +74,7 @@ add_link_options(
 set(arch_targets "")
 # Create a target for each architecture
 foreach(ARCH IN LISTS CMAKE_OSX_ARCHITECTURES)
-    set(target_name libz_${ARCH})
+    set(target_name libsqlite3_${ARCH})
     list(APPEND arch_targets ${target_name})
     add_library(${target_name} SHARED ${SQLITE_SOURCES})
 
@@ -90,7 +91,7 @@ foreach(ARCH IN LISTS CMAKE_OSX_ARCHITECTURES)
 
     target_include_directories(
         ${target_name}
-        PRIVATE ${CMAKE_SOURCE_DIR}/zlib ${SDK_PATH}/usr/include
+        PRIVATE ${CMAKE_SOURCE_DIR} ${SDK_PATH}/usr/include
     )
 
     target_compile_options(${target_name} PRIVATE -arch ${ARCH})
