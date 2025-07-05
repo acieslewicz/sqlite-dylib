@@ -2,9 +2,13 @@
 
 A CMake-based build configuration for creating SQLite3 dynamic libraries.
 
+## Prerequisites
+
+Download the common-3.0 sdk from here: [common-3.0.sdk](https://github.com/touchHLE/common-3.0-sdk)
+
 ## Build Dylib
 
-`cmake -S . -B build`
+`cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/common-3.0.sdk/cmake/Toolchain/common-3.0.cmake -S . -B build`
 
 `cmake --build build`
 

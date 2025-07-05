@@ -1,29 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
 
-# TODO: Can this be replaced with a toolchain file?
-set(CMAKE_SYSTEM_NAME Linux)
-set(CMAKE_LINK_DEPENDS_NO_SHARED TRUE)
-
-set(CMAKE_C_COMPILER clang)
-
-set(SDK_PATH ${CMAKE_SOURCE_DIR}/common-3.0.sdk)
-set(CMAKE_LINKER ${SDK_PATH}/usr/bin/ld)
-set(LIPO ${SDK_PATH}/usr/bin/lipo)
-
-set(CMAKE_OSX_SYSROOT ${SDK_PATH}) # Does not seem to work
-set(CMAKE_OSX_ARCHITECTURES armv6 armv7)
-set(CMAKE_OSX_DEPLOYMENT_TARGET 3.0)
-set(CMAKE_C_COMPILER_TARGET arm-apple-ios3.0)
-
-set(CMAKE_C_CREATE_SHARED_LIBRARY
-    "<CMAKE_LINKER> <LINK_FLAGS> -o <TARGET> <OBJECTS>"
-) # Force CMake to use
-# custom linker
-
-# Setting OSX Flags breaks the test on Ubuntu. Claim it works as a workaround
-# (since it does)
-set(CMAKE_C_COMPILER_WORKS TRUE)
-
 project(sqlite3 VERSION 3.6.10 LANGUAGES C)
 
 add_definitions(-D_DARWIN_NO_64_BIT_INODE)
@@ -40,9 +16,7 @@ add_compile_options(
     -Wno-incompatible-sysroot
     -Wno-expansion-to-defined
     -fno-stack-protector
-    -isysroot
-    ${SDK_PATH} # Workardound for missing
-    # __stack_chk_*
+    # Workardound for missing __stack_chk_*
 )
 
 add_compile_definitions(USE_MMAP NDEBUG)
