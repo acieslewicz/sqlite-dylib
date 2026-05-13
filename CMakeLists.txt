@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.20)
 
 project(sqlite3 VERSION 3.6.10 LANGUAGES C)
 
-add_definitions(-D_DARWIN_NO_64_BIT_INODE)
-
 set(LIB_NAME "libsqlite3.dylib")
 set(INSTALL_PATH /usr/lib)
 set(VERSION 3.6.10)
@@ -35,7 +33,9 @@ target_compile_options(${LIB_NAME}
 
 target_compile_definitions(${LIB_NAME}
     PRIVATE
+        PRODUCT_iPhone
         USE_MMAP
+        USE_PREAD
         NDEBUG
 )
 
