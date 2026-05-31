@@ -33,7 +33,6 @@ target_compile_options(${LIB_NAME}
 
 target_compile_definitions(${LIB_NAME}
     PRIVATE
-        PRODUCT_iPhone
         USE_MMAP
         USE_PREAD
         NDEBUG
