@@ -1,6 +1,6 @@
-# SQLite3 Dylib
+# SQLite Dylib
 
-A CMake-based build configuration for creating an SQLite3 dylib.
+A CMake-based build configuration for creating an SQLite dylib.
 
 ## Prerequisites
 
