@@ -1,6 +1,6 @@
-# SQLite3 Dynamic Library Builder
+# SQLite3 Dylib
 
-A CMake-based build configuration for creating SQLite3 dynamic libraries.
+A CMake-based build configuration for creating an SQLite3 dylib.
 
 ## Prerequisites
 
